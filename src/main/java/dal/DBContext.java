@@ -9,21 +9,19 @@ public class DBContext {
 
     public DBContext() {
         try {
-            // Thay bằng pass MySQL của bà (hồi nãy tui thấy trong file cũ là 241006)
-            String user = "root";
-            String pass = "241006"; 
-            // Đã đổi đúng tên Database chuẩn của mình
-            String url = "jdbc:mysql://localhost:3306/quanlynhahang";
-            
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(url, user, pass);
-            System.out.println("KẾT NỐI DATABASE THÀNH CÔNG!"); // In ra nếu thành công
-            
-        } catch (ClassNotFoundException ex) {
-            System.out.println("LỖI SỐ 1: BÀ CHƯA BỎ FILE MYSQL-CONNECTOR VÀO THƯ MỤC WEB-INF/lib !");
-        } catch (SQLException ex) {
-            System.out.println("LỖI SỐ 2: SAI PASSWORD HOẶC CHƯA BẬT XAMPP/MYSQL ! Lỗi chi tiết: " + ex.getMessage());
-        }
+    String url = "jdbc:mysql://metro.proxy.rlwy.net:34189/railway";
+    String user = "root";
+    String pass = "JiALDrsIRlvlXCUmJlGXIoosYJLMgggw";
+    
+    // BẮT BUỘC PHẢI CÓ DÒNG NÀY TRƯỚC KHI GET CONNECTION
+    Class.forName("com.mysql.cj.jdbc.Driver"); 
+    
+    this.connection = DriverManager.getConnection(url, user, pass);
+} catch (Exception e) {
+    // Đừng để trống phần catch này, hãy in lỗi ra log để biết sai ở đâu
+    System.out.println("LỖI KẾT NỐI DB: " + e.getMessage());
+    e.printStackTrace();
+}
     }
     // Hàm này dùng để đóng ống kết nối
     public void closeConnection() {
